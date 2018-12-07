@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="DataWareHouse.Database.CalculationViews::ZCAV_DIM_CUSTOMER" applyPrivilegeType="NONE" dataCategory="DIMENSION" dimensionType="STANDARD" schemaVersion="3.0" outputViewType="Projection" cacheInvalidationPeriod="HOURLY" enforceSqlExecution="false">
+<descriptions defaultDescription="Customer Dimension"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="SourceData::CUSTOMER">
+    <resourceUri>SourceData::CUSTOMER</resourceUri>
+  </DataSource>
+</dataSources>
+<calculationViews/>
+<logicalModel id="SourceData::CUSTOMER">
+  <attributes>
+    <attribute id="ID" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ID"/>
+      <keyMapping columnObjectName="CUSTOMER" columnName="ID"/>
+    </attribute>
+    <attribute id="cust_name" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="customer_name"/>
+      <keyMapping columnObjectName="CUSTOMER" columnName="name"/>
+    </attribute>
+    <attribute id="address" order="3" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="address"/>
+      <keyMapping columnObjectName="CUSTOMER" columnName="address"/>
+    </attribute>
+    <attribute id="zip_code" order="4" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="zip_code"/>
+      <keyMapping columnObjectName="CUSTOMER" columnName="zip_code"/>
+    </attribute>
+    <attribute id="phone" order="5" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="phone"/>
+      <keyMapping columnObjectName="CUSTOMER" columnName="phone"/>
+    </attribute>
+    <attribute id="city" order="6" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="city"/>
+      <keyMapping columnObjectName="CUSTOMER" columnName="city"/>
+    </attribute>
+    <attribute id="country" order="7" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="country"/>
+      <keyMapping columnObjectName="CUSTOMER" columnName="country"/>
+    </attribute>
+    <attribute id="notes" order="8" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="notes"/>
+      <keyMapping columnObjectName="CUSTOMER" columnName="notes"/>
+    </attribute>
+    <attribute id="SID" hidden="true" order="9" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="SID"/>
+      <keyMapping columnObjectName="CUSTOMER" columnName="SID"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures/>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="40" y="85"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>

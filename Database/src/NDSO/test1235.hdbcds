@@ -1,0 +1,4 @@
+namespace NDSO;
+
+context test1235 {
+};

@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="DataWareHouse.Database.CalculationViews::ZCAV_DIM_FILM" applyPrivilegeType="NONE" dataCategory="DIMENSION" dimensionType="STANDARD" schemaVersion="3.0" outputViewType="Projection" cacheInvalidationPeriod="HOURLY" enforceSqlExecution="false">
+<descriptions defaultDescription="Fim Dimension"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="SourceData::FILMS">
+    <resourceUri>SourceData::FILMS</resourceUri>
+  </DataSource>
+  <DataSource id="SourceData::FILM_CATEGORY">
+    <resourceUri>SourceData::FILM_CATEGORY</resourceUri>
+  </DataSource>
+  <DataSource id="SourceData::CATEGORY">
+    <resourceUri>SourceData::CATEGORY</resourceUri>
+  </DataSource>
+</dataSources>
+<calculationViews>
+  <calculationView xsi:type="Calculation:ProjectionView" id="FILM">
+    <viewAttributes>
+      <viewAttribute id="film_id">
+        <descriptions defaultDescription="film_id"/>
+      </viewAttribute>
+      <viewAttribute id="title">
+        <descriptions defaultDescription="title"/>
+      </viewAttribute>
+      <viewAttribute id="description">
+        <descriptions defaultDescription="description"/>
+      </viewAttribute>
+      <viewAttribute id="release_year">
+        <descriptions defaultDescription="release_year"/>
+      </viewAttribute>
+      <viewAttribute id="length">
+        <descriptions defaultDescription="length"/>
+      </viewAttribute>
+      <viewAttribute id="rating">
+        <descriptions defaultDescription="rating"/>
+      </viewAttribute>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <restrictedViewAttributes/>
+    <input node="SourceData::FILMS">
+      <mapping xsi:type="Calculation:AttributeMapping" target="film_id" source="film_id"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="title" source="title"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="description" source="description"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="release_year" source="release_year"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="length" source="length"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="rating" source="rating"/>
+    </input>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="FILM_CATEGORY">
+    <viewAttributes>
+      <viewAttribute id="film_id">
+        <descriptions defaultDescription="film_id"/>
+      </viewAttribute>
+      <viewAttribute id="category_id">
+        <descriptions defaultDescription="category_id"/>
+      </viewAttribute>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <restrictedViewAttributes/>
+    <input node="SourceData::FILM_CATEGORY">
+      <mapping xsi:type="Calculation:AttributeMapping" target="film_id" source="film_id"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="category_id" source="category_id"/>
+    </input>
+  </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="FILM_CAT_JN" cardinality="CN_1" joinType="leftOuter">
+    <viewAttributes>
+      <viewAttribute id="film_id">
+        <descriptions defaultDescription="film_id"/>
+      </viewAttribute>
+      <viewAttribute id="title">
+        <descriptions defaultDescription="title"/>
+      </viewAttribute>
+      <viewAttribute id="description">
+        <descriptions defaultDescription="description"/>
+      </viewAttribute>
+      <viewAttribute id="release_year">
+        <descriptions defaultDescription="release_year"/>
+      </viewAttribute>
+      <viewAttribute id="length">
+        <descriptions defaultDescription="length"/>
+      </viewAttribute>
+      <viewAttribute id="rating">
+        <descriptions defaultDescription="rating"/>
+      </viewAttribute>
+      <viewAttribute id="category_id">
+        <descriptions defaultDescription="category_id"/>
+      </viewAttribute>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <restrictedViewAttributes/>
+    <input node="FILM">
+      <mapping xsi:type="Calculation:AttributeMapping" target="film_id" source="film_id"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="title" source="title"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="description" source="description"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="release_year" source="release_year"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="length" source="length"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="rating" source="rating"/>
+    </input>
+    <input node="FILM_CATEGORY">
+      <mapping xsi:type="Calculation:AttributeMapping" target="category_id" source="category_id"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="film_id" source="film_id"/>
+    </input>
+    <joinAttribute name="film_id"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="CATEGORY">
+    <viewAttributes>
+      <viewAttribute id="category_id">
+        <descriptions defaultDescription="category_id"/>
+      </viewAttribute>
+      <viewAttribute id="name">
+        <descriptions defaultDescription="name"/>
+      </viewAttribute>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <restrictedViewAttributes/>
+    <input node="SourceData::CATEGORY">
+      <mapping xsi:type="Calculation:AttributeMapping" target="category_id" source="category_id"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="name" source="name"/>
+    </input>
+  </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="FILM_CAT_TOT" cardinality="CN_1" joinType="leftOuter">
+    <viewAttributes>
+      <viewAttribute id="film_id">
+        <descriptions defaultDescription="film_id"/>
+      </viewAttribute>
+      <viewAttribute id="title">
+        <descriptions defaultDescription="title"/>
+      </viewAttribute>
+      <viewAttribute id="description">
+        <descriptions defaultDescription="description"/>
+      </viewAttribute>
+      <viewAttribute id="release_year">
+        <descriptions defaultDescription="release_year"/>
+      </viewAttribute>
+      <viewAttribute id="length">
+        <descriptions defaultDescription="length"/>
+      </viewAttribute>
+      <viewAttribute id="rating">
+        <descriptions defaultDescription="rating"/>
+      </viewAttribute>
+      <viewAttribute id="category_id">
+        <descriptions defaultDescription="category_id"/>
+      </viewAttribute>
+      <viewAttribute id="name">
+        <descriptions defaultDescription="name"/>
+      </viewAttribute>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <restrictedViewAttributes/>
+    <input node="FILM_CAT_JN">
+      <mapping xsi:type="Calculation:AttributeMapping" target="film_id" source="film_id"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="title" source="title"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="description" source="description"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="release_year" source="release_year"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="length" source="length"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="rating" source="rating"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="category_id" source="category_id"/>
+    </input>
+    <input node="CATEGORY">
+      <mapping xsi:type="Calculation:AttributeMapping" target="name" source="name"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="category_id" source="category_id"/>
+    </input>
+    <joinAttribute name="category_id"/>
+  </calculationView>
+</calculationViews>
+<logicalModel id="FILM_CAT_TOT">
+  <attributes>
+    <attribute id="film_id" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="film_id"/>
+      <keyMapping columnObjectName="FILM_CAT_TOT" columnName="film_id"/>
+    </attribute>
+    <attribute id="title" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="title"/>
+      <keyMapping columnObjectName="FILM_CAT_TOT" columnName="title"/>
+    </attribute>
+    <attribute id="description" order="3" displayAttribute="false" attributeHierarchyActive="false" hidden="true">
+      <descriptions defaultDescription="description"/>
+      <keyMapping columnObjectName="FILM_CAT_TOT" columnName="description"/>
+    </attribute>
+    <attribute id="release_year" order="4" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="release_year"/>
+      <keyMapping columnObjectName="FILM_CAT_TOT" columnName="release_year"/>
+    </attribute>
+    <attribute id="length" order="5" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="length"/>
+      <keyMapping columnObjectName="FILM_CAT_TOT" columnName="length"/>
+    </attribute>
+    <attribute id="rating" order="6" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="rating"/>
+      <keyMapping columnObjectName="FILM_CAT_TOT" columnName="rating"/>
+    </attribute>
+    <attribute id="name" order="7" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="category_name"/>
+      <keyMapping columnObjectName="FILM_CAT_TOT" columnName="name"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes>
+    <calculatedAttribute id="CC_DESCRIPTION" order="8" semanticType="empty" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="description"/>
+      <keyCalculation datatype="VARCHAR" expressionLanguage="COLUMN_ENGINE" length="255">
+        <formula>string(&quot;description&quot;)</formula>
+      </keyCalculation>
+      </calculatedAttribute>
+  </calculatedAttributes>
+  <baseMeasures/>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="343" y="112"/>
+    
+      <rectangleSize width="140"/>
+    </shape>
+  
+    <shape expanded="true" modelObjectName="FILM" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="92" y="536"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="FILM_CATEGORY" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="301" y="536"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="FILM_CAT_JN" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="118" y="376"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape modelObjectName="FILM" modelObjectNameSpace="FILM_CAT_JN" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+    <shape modelObjectName="FILM_CATEGORY" modelObjectNameSpace="FILM_CAT_JN" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+    <shape expanded="true" modelObjectName="CATEGORY" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="396" y="376"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="FILM_CAT_TOT" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="333" y="217"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape modelObjectName="FILM_CAT_JN" modelObjectNameSpace="FILM_CAT_TOT" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+    <shape modelObjectName="CATEGORY" modelObjectNameSpace="FILM_CAT_TOT" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>

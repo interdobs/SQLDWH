@@ -1,0 +1,6 @@
+TYPE "DataWareHouse.Database.TableTypes::OUT_FILM_CATEGORY" AS TABLE
+(
+film_id int,
+category_id int,
+name NVARCHAR(255)
+)

@@ -1,0 +1,14 @@
+PROCEDURE "DataWareHouse.Database.Procedure::GET_FILM_CATEGORY_NAME" ( 
+	out return_cat "DataWareHouse.Database.TableTypes::OUT_FILM_CATEGORY"
+)
+   LANGUAGE SQLSCRIPT
+   SQL SECURITY INVOKER
+   --DEFAULT SCHEMA <default_schema_name>
+   READS SQL DATA AS
+BEGIN
+
+return_cat = select a."film_id" as film_id, b."category_id" as category_id, c."name" as name
+from "SourceData::FILMS" a
+LEFT OUTER JOIN "SourceData::FILM_CATEGORY" b ON a."film_id" = b."film_id"
+LEFT OUTER JOIN "SourceData::CATEGORY" c ON b."category_id" = c."category_id";
+END
