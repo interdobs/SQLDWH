@@ -1,0 +1,88 @@
+_schema-version: '2.0'
+ID: WEBFLIX
+description: WEBFLIX - Online moviews
+version: 0.0.1
+
+modules:
+ - name:  WEBFLIX-DWF
+   type: dwf
+#   parameters:
+#      app-name: WEBFLIX-DWF
+   path: DWF
+   requires:
+#      - name: WEBFLIX-uaa
+      - name: WEBFLIX-dws
+   properties:
+     memory: 256M
+
+ - name: WEBFLIX-Backend
+   type: nodejs
+#   parameters:
+#      app-name: WEBFLIX-Backend
+   path: Backend
+   requires:
+#      - name: WEBFLIX-uaa
+      - name: WEBFLIX-container
+      - name: WEBFLIX-dws
+   properties:
+     memory: 512M
+     API_END_POINT: "${xs-api-url}"
+#     SAP_JWT_TRUST_ACL: "[{\"clientid\":\"*\",\"identityzone\":\"*\"}]"
+   provides:
+    - name:  WEBFLIX-Backend
+      properties:
+       service_url: ${default-url}
+
+ - name: WEBFLIX-Database
+   type: hdb
+#   parameters:
+#      app-name: WEBFLIX-Database
+   path: Database
+   requires:
+    - name: WEBFLIX-container
+   properties:
+     memory: 256M
+     HDI_DEPLOY_OPTIONS: { "auto_undeploy": true }
+
+resources:
+# - name: WEBFLIX-uaa
+#   type: com.sap.xs.uaa
+#   parameters:
+#     service-name: WEBFLIX-uaa
+#     service-plan: space
+#     config:
+#         xsappname: WEBFLIX
+#         scopes:
+#          - name: $XSAPPNAME.TOE
+#            description: access for TOE
+#            grant-as-authority-to-apps:
+#             - dwf-toe
+#             - dwf-runtime
+#            granted-apps:
+#             - dwf-toe
+#             - dwf-runtime
+#         authorities:
+#          - $ACCEPT_GRANTED_AUTHORITIES
+#         role-templates:
+#           - name: User
+#             description: Access API
+#             scope-references:
+#              - $XSAPPNAME.TOE
+
+ - name: WEBFLIX-dws
+   properties:
+      dwf-edw-client-name: ${service-name}
+#      dwf-edw-client-name: WEBFLIX-dws
+#   parameters:
+#      service-name: WEBFLIX-dws
+   type: com.sap.xs.dwf-edw-client
+ - name: WEBFLIX-container
+   properties:
+      hdi-container-name: ${service-name}
+#      hdi-container-name: WEBFLIX-container
+#   parameters:
+#      service-name: WEBFLIX-container
+   type: com.sap.xs.hdi-container
+   parameters:
+     service-keys:
+     - name: dwf-monitor

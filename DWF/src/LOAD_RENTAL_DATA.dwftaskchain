@@ -1,0 +1,31 @@
+{
+  "description": "Load Rental Data",
+  "resumeBehavior": "NO_RESUME",
+  "taskList": {
+    "1": {
+      "inline": {
+        "type": "START",
+        "taskGroup": "com.sap.dwf.toe.executionControl"
+      }
+    },
+    "2": {
+      "inline": {
+        "type": "executeFlowGraph",
+        "taskGroup": "hanaNative",
+        "description": "Load Rental Data",
+        "parameterValues": [
+          {
+            "id": "flowGraphName",
+            "value": "DataWareHouse.Database.DataFlows::LOAD_RENTAL"
+          }
+        ]
+      },
+      "preconditions": [
+        {
+          "from": "1",
+          "status": "NEUTRAL"
+        }
+      ]
+    }
+  }
+}
