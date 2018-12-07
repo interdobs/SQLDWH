@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Data Warehousing Project
 
 ## Overview
@@ -73,3 +74,7 @@ you may consider not using this as build time is considerable.
 
 Note that while the backend module is also built by this, you still have to
 *run* it manually afterwards.
+=======
+# SQLDWH
+HANA SQL DWH
+>>>>>>> refs/heads/master
